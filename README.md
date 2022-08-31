@@ -13,5 +13,5 @@ The game has three difficulties:
 * Normal: Signs's color is randomly chosen and the game speeds up over time.
 * Difícil (hard): Letters no longer have visual help to perform the sign.
 ## Check out your scores
-Install the app in your phone and run the apy.py script to start the server.\
+Install the app in your phone and run the api.py script to start the server.\
 You can create an user or login here to see your scores.
