@@ -15,3 +15,5 @@ The game has three difficulties:
 ## Check out your scores
 Install the app in your phone and run the api.py script to start the server.\
 You can create an user or login here to see your scores.
+## Play online
+Use the scripts in the Network folder to play a pvp gamemode.
