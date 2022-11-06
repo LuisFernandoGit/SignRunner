@@ -2,7 +2,7 @@
 Videogame that is controlled via meixcan sign language.\
 ![alt text](https://media.giphy.com/media/U7JqwDaIEcgAX4DzWt/giphy.gif)
 ## Getting started
-Run the main.py script to start the game. If you don't have aN user, enter:\
+Run the main.py script to start the game. If you don't have an user, enter:\
 Nombre de usuario: user\
 Contraseña: pass\
 to login in an empty user.
