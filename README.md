@@ -1,5 +1,5 @@
 # SignRunner
-Videogame that is controlled via meixcan sign language.
+Videogame that is controlled via meixcan sign language.\
 ![alt text](https://media.giphy.com/media/U7JqwDaIEcgAX4DzWt/giphy.gif)
 ## Start
 Run the main.py script to start the game. If you don't have a user, enter:\
