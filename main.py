@@ -57,18 +57,19 @@ cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
 
 #Importing assets
-RUNNING = [pygame.image.load(os.path.join("Assets/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoRun2.png"))]
-JUMPING = pygame.image.load(os.path.join("Assets/Dino", "DinoJump.png"))
-DUCKING = [pygame.image.load(os.path.join("Assets/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("Assets/Dino", "DinoDuck2.png"))]
+RUNNING = [pygame.image.load(os.path.join("Assets/Doge", "DogeRun1.png")),
+           pygame.image.load(os.path.join("Assets/Doge", "DogeRun2.png")),
+           pygame.image.load(os.path.join("Assets/Doge", "DogeRun3.png"))]
+JUMPING = pygame.image.load(os.path.join("Assets/Doge", "DogeJump.png"))
+DUCKING = [pygame.image.load(os.path.join("Assets/Doge", "DinoDuck1.png")),
+           pygame.image.load(os.path.join("Assets/Doge", "DinoDuck2.png"))]
 
-SMALL_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus1.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "SmallCactus3.png"))]
-LARGE_CACTUS = [pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus1.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("Assets/Cactus", "LargeCactus3.png"))]
+SMALL_CHEEMS = [pygame.image.load(os.path.join("Assets/Cheems", "SmallCheems1.png")),
+                pygame.image.load(os.path.join("Assets/Cheems", "SmallCheems2.png")),
+                pygame.image.load(os.path.join("Assets/Cheems", "SmallCheems3.png"))]
+LARGE_CHEEMS = [pygame.image.load(os.path.join("Assets/Cheems", "LargeCheems1.png")),
+                pygame.image.load(os.path.join("Assets/Cheems", "LargeCheems2.png")),
+                pygame.image.load(os.path.join("Assets/Cheems", "BuffDoge.png"))]
 
 BIRD = [pygame.image.load(os.path.join("Assets/Bird", "Bird1.png")),
         pygame.image.load(os.path.join("Assets/Bird", "Bird2.png"))]
@@ -76,6 +77,7 @@ BIRD = [pygame.image.load(os.path.join("Assets/Bird", "Bird1.png")),
 CLOUD = pygame.image.load(os.path.join("Assets/Other", "Cloud.png"))
 BG = pygame.image.load(os.path.join("Assets/Other", "Track.png"))
 
+MAIN_IMG = pygame.image.load(os.path.join("Assets/Other", "Logo.png")).convert_alpha()
 START_IMG = pygame.image.load(os.path.join("Assets/Other", "start_btn.png")).convert_alpha()
 EXIT_IMG = pygame.image.load(os.path.join("Assets/Other", "exit_btn.png")).convert_alpha()
 BACK_BTN = pygame.image.load(os.path.join("Assets/Other", "Back.png")).convert_alpha()
@@ -305,7 +307,7 @@ class Button():
         return action
 
 #Player class
-class Dinosaur:
+class Doge:
     #Coordinates on screen
     X_POS = 80
     Y_POS = 510
@@ -318,24 +320,24 @@ class Dinosaur:
         self.run_img = RUNNING
         self.jump_img = JUMPING
 
-        self.dino_duck = False
-        self.dino_run = True
-        self.dino_jump = False
+        self.doge_duck = False
+        self.doge_run = True
+        self.doge_jump = False
 
         self.step_index = 0
         self.jump_vel = self.JUMP_VEL
         self.image = self.run_img[0]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS
+        self.doge_rect = self.image.get_rect()
+        self.doge_rect.x = self.X_POS
+        self.doge_rect.y = self.Y_POS
 
     #change player status by sign recognition
     def update(self, userInput, sign, hand, handID):
-        if self.dino_duck:
+        if self.doge_duck:
             self.duck()
-        if self.dino_run:
+        if self.doge_run:
             self.run()
-        if self.dino_jump:
+        if self.doge_jump:
             self.jump()
 
         if self.step_index >= 10:
@@ -343,49 +345,49 @@ class Dinosaur:
 
         # check player's input to jump
         if userInput == sign and handID == hand:
-            if not self.dino_jump:
-                self.dino_duck = False
-                self.dino_run = False
-                self.dino_jump = True
+            if not self.doge_jump:
+                self.doge_duck = False
+                self.doge_run = False
+                self.doge_jump = True
         #elif userInput[pygame.K_DOWN] and not self.dino_jump:
         #    self.dino_duck = True
         #    self.dino_run = False
         #    self.dino_jump = False
         #elif not (self.dino_jump or userInput[pygame.K_DOWN]):
-        elif not (self.dino_jump or self.dino_duck):
-            self.dino_duck = False
-            self.dino_run = True
-            self.dino_jump = False
+        elif not (self.doge_jump or self.doge_duck):
+            self.doge_duck = False
+            self.doge_run = True
+            self.doge_jump = False
 
     #Sprite animations
     def duck(self):
         self.image = self.duck_img[self.step_index // 5]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS_DUCK
+        self.doge_rect = self.image.get_rect()
+        self.doge_rect.x = self.X_POS
+        self.doge_rect.y = self.Y_POS_DUCK
         self.step_index += 1
 
     def run(self):
-        self.image = self.run_img[self.step_index // 5]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS
+        self.image = self.run_img[self.step_index // 4]
+        self.doge_rect = self.image.get_rect()
+        self.doge_rect.x = self.X_POS
+        self.doge_rect.y = self.Y_POS
         self.step_index += 1
 
     def jump(self):
         self.image = self.jump_img
         #increase player's vertical height
-        if self.dino_jump:
-            self.dino_rect.y -= self.jump_vel * 4
+        if self.doge_jump:
+            self.doge_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
 
         #Move player's height back to the floor
-        if self.jump_vel < - self.JUMP_VEL and self.dino_rect.y >= 500:
-            self.dino_jump = False
+        if self.jump_vel < - self.JUMP_VEL and self.doge_rect.y >= 500:
+            self.doge_jump = False
             self.jump_vel = self.JUMP_VEL
 
     def draw(self, SCREEN):
-        SCREEN.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
+        SCREEN.blit(self.image, (self.doge_rect.x, self.doge_rect.y))
 
 class Cloud:
     def __init__(self):
@@ -414,7 +416,7 @@ class Obstacle:
         self.id = id
         self.rect = self.image[self.type].get_rect()
 
-        #Ppawn obstacle behind sign sprite
+        #Spawn obstacle behind sign sprite
         if self.id == 0:
             self.rect.x = SCREEN_WIDTH
         else:
@@ -429,7 +431,7 @@ class Obstacle:
     def draw(self, SCREEN):
         SCREEN.blit(self.image[self.type], self.rect)
 
-class SmallCactus(Obstacle):
+class SmallCheems(Obstacle):
     def __init__(self, image):
         #Set random small cactus object
         self.type = random.randint(0, 2)
@@ -437,13 +439,16 @@ class SmallCactus(Obstacle):
         super().__init__(image, self.type, self.id)
         self.rect.y = 525
 
-class LargeCactus(Obstacle):
+class LargeCheems(Obstacle):
     def __init__(self, image):
         # Set random large cactus object
         self.type = random.randint(0, 2)
         self.id = 1
         super().__init__(image, self.type, self.id)
-        self.rect.y = 500
+        if self.type == 2:
+            self.rect.y = 478
+        else:
+            self.rect.y = 500
 
 class Rect_Input(Obstacle):
     def __init__(self, image, type):
@@ -458,7 +463,7 @@ class Bird(Obstacle):
         self.type = 0
         self.id = 1
         super().__init__(image, self.type, self.id)
-        self.rect.y = 460
+        self.rect.y = 480
         self.index = 0
 
     def draw(self, SCREEN):
@@ -473,7 +478,7 @@ def main(difficulty):
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     run = True
     clock = pygame.time.Clock()
-    player = Dinosaur()
+    player = Doge()
     cloud = Cloud()
     game_speed = 22
     x_pos_bg = 0
@@ -551,11 +556,11 @@ def main(difficulty):
             sign = SIGNS[sign_index]
             if random.randint(0, 2) == 0:
                 hand = 'Right'
-                obstacles.append(SmallCactus(SMALL_CACTUS))
+                obstacles.append(SmallCheems(SMALL_CHEEMS))
                 obstacles.append(Rect_Input(RIGHT_SIGNS, sign_index))
             elif random.randint(0, 2) == 1:
                 hand = 'Right'
-                obstacles.append(LargeCactus(LARGE_CACTUS))
+                obstacles.append(LargeCheems(LARGE_CHEEMS))
                 obstacles.append(Rect_Input(RIGHT_SIGNS, sign_index))
             elif random.randint(0, 2) == 2:
                 if difficulty == "e":
@@ -577,7 +582,7 @@ def main(difficulty):
             obstacle.draw(SCREEN)
 
             # Check if player colided with input rectangle
-            if player.dino_rect.colliderect(obstacle.rect):
+            if player.doge_rect.colliderect(obstacle.rect):
                 pygame.display.update()
                 player.update(userInput, sign, hand, handID)
                 player.draw(SCREEN)
@@ -617,16 +622,16 @@ def menu(death_count, difficulty):
 
     while run:
         SCREEN.fill((255, 255, 255))
-        font = pygame.font.Font('freesansbold.ttf', 30)
+        font = pygame.font.Font('freesansbold.ttf', 34)
         fontb = pygame.font.Font('freesansbold.ttf', 20)
 
         # Game start menu
         if death_count == 0:
             text = font.render("Presiona cualquier tecla para comenzar.", True, (0, 0, 0))
-            blue_icon = pygame.transform.scale(BLUE_IMG, (BLUE_IMG.get_width() * 0.4, BLUE_IMG.get_height() * 0.4))
-            red_icon = pygame.transform.scale(RED_IMG, (RED_IMG.get_width() * 0.4, RED_IMG.get_height() * 0.4))
+            blue_icon = pygame.transform.scale(BLUE_IMG, (BLUE_IMG.get_width() * 0.7, BLUE_IMG.get_height() * 0.7))
+            red_icon = pygame.transform.scale(RED_IMG, (RED_IMG.get_width() * 0.7, RED_IMG.get_height() * 0.7))
             SCREEN.blit(red_icon, (350, 425))
-            SCREEN.blit(blue_icon, (730, 425))
+            SCREEN.blit(blue_icon, (800, 425))
 
         # Retry menu
         elif death_count > 0:
@@ -639,7 +644,8 @@ def menu(death_count, difficulty):
         textRect = text.get_rect()
         textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         SCREEN.blit(text, textRect)
-        SCREEN.blit(RUNNING[0], (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 - 140))
+        dogeicon = pygame.transform.scale(RUNNING[0], (RUNNING[0].get_width() * 1.4, RUNNING[0].get_height() * 1.4))
+        SCREEN.blit(dogeicon, (SCREEN_WIDTH // 2 - 55, SCREEN_HEIGHT // 2 - 160))
 
         # Draw back to main menu button
         back_bttn = Button(50, 50, BACK_BTN, 1)
@@ -656,8 +662,11 @@ def menu(death_count, difficulty):
             if event.type == pygame.QUIT:
                 run = False
             elif event.type == pygame.KEYDOWN:
-                run = False
-                op = 1
+                if event.key == pygame.K_ESCAPE:
+                    run = False
+                else:
+                    run = False
+                    op = 1
 
     # Check if player starts the game or goes back to main menu
     if op == 0:
@@ -731,14 +740,14 @@ def login_screen():
     fontb = pygame.font.Font('freesansbold.ttf', 30)
     fontc = pygame.font.Font('freesansbold.ttf', 52)
     fontd = pygame.font.Font('freesansbold.ttf', 18)
-    login_bttn = Button(450, 500, LOGIN_IMG, 1)
+    login_bttn = Button(450, 570, LOGIN_IMG, 1)
 
     # Player's login variables
     user_text = ''
     pass_text = ''
     hidden_pass = ''
-    user_input = pygame.Rect(400, 310, 450, 37)
-    pass_input = pygame.Rect(400, 410, 450, 37)
+    user_input = pygame.Rect(400, 400, 450, 37)
+    pass_input = pygame.Rect(400, 490, 450, 37)
     clicked_user = False
     clicked_pass = False
     failed = False
@@ -774,6 +783,8 @@ def login_screen():
                     if event.key == pygame.K_BACKSPACE:
                         pass_text = pass_text[:-1]
                         hidden_pass = hidden_pass[:-1]
+                    elif event.key == pygame.K_CAPSLOCK:
+                        pass
                     else:
                         pass_text += event.unicode
                         hidden_pass += '*'
@@ -782,9 +793,9 @@ def login_screen():
         SCREEN.fill((255, 255, 255))
         textu = fontb.render("Nombre de Usuario", True, (0, 0, 0))
         textp = fontb.render("Contraseña", True, (0, 0, 0))
-        SCREEN.blit(textu, (400, 277))
-        SCREEN.blit(textp, (400, 377))
-        SCREEN.blit(RUNNING[0], (SCREEN_WIDTH // 2 - 40, SCREEN_HEIGHT // 2 - 240))
+        SCREEN.blit(textu, (400, 367))
+        SCREEN.blit(textp, (400, 457))
+        SCREEN.blit(MAIN_IMG, (310, 10))
 
         pygame.draw.rect(SCREEN, (0, 0, 0), user_input, 4)
         pygame.draw.rect(SCREEN, (0, 0, 0), pass_input, 4)
@@ -811,7 +822,7 @@ def login_screen():
 
         if failed:
             error = fontd.render("Nombre de Usuario o Contraseña incorrectos", True, (255, 0, 0))
-            SCREEN.blit(error, (425, 235))
+            SCREEN.blit(error, (425, 545))
         pygame.display.update()
 
     if login:
