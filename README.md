@@ -5,7 +5,7 @@ Videogame that is controlled via meixcan sign language.\
 Run the main.py script to start the game. If you don't have an user, enter:\
 Nombre de usuario: user\
 Contraseña: pass\
-to login in an empty user.
+to login with an empty user.
 ## Playing the game
 After selecting a difficulty, press any key to start the game. You will have to avoid the obstacles by performing the sign that is shown to you on the screen.\
 Red signs must be performed with your left hand, blue signs must be performed with your right hand.\
