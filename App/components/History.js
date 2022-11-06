@@ -32,6 +32,7 @@ export default class History extends Component {
             console.log(this.state.day);
             console.log(this.state.month);
             console.log(this.state.year);
+            //Replace "0.0.0.0" for your local ip (shown in the api.py console).
             const response = await fetch('http://0.0.0.0:5050/historial/'+this.state.difficulty+'/'+this.state.id, {
                 method: 'POST',
                 headers: {
