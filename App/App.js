@@ -8,10 +8,11 @@
 
 import React from 'react';
 import type {Node} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
-//import Create from './components/Create';
+import History from './components/History';
+import Login from './components/Login';
 import {
   SafeAreaView,
   ScrollView,
@@ -58,13 +59,16 @@ const Section = ({children, title}): Node => {
 };
 
 const Stack = createStackNavigator()
+const navTheme = DefaultTheme;
+navTheme.colors.background = '#5f9ea0';
 function Menu() {
   return(
-    <View style = {styles.container}>
-      <Stack.Navigator>
-        <Stack.Screen name = "Home" component={Home}/>
-      </Stack.Navigator>
-    </View>
+    <Stack.Navigator screenOptions={{ headerStyle: {backgroundColor: '#008b8b' }, headerTitleAlign: 'center',
+    headerTintColor: '#f0ffff', headerTitleStyle: {fontWeight: 'bold'}}}>
+      <Stack.Screen name = "Iniciar Sesión" component={Login}/>
+      <Stack.Screen options={{headerLeft: () => null }} name = "Última Puntuación" component={Home}/>
+      <Stack.Screen name = "Puntajes Semanales" component={History}/>
+    </Stack.Navigator>
   );
 }
 
@@ -86,8 +90,8 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eddfdf",
-    marginTop: 20,
+    backgroundColor: "#6a5acd",
+    //marginTop: 20,
 
   },
   sectionContainer: {
@@ -109,3 +113,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
