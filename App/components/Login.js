@@ -47,6 +47,7 @@ export default class Login extends Component {
 
     Log_in = async () =>{
         try{
+            //Replace "0.0.0.0" for your local ip (shown in the api.py console).
             const response = await fetch('http://0.0.0.0:5050/login',{
                 method: 'POST',
                 headers: {
@@ -75,6 +76,7 @@ export default class Login extends Component {
 
     Sign_in = async () =>{
         try{
+            //Replace "0.0.0.0" for your local ip (shown in the api.py console).
             const response = await fetch('http://0.0.0.0:5050/signin',{
                 method: 'POST',
                 headers: {
