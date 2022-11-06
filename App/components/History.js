@@ -32,7 +32,7 @@ export default class History extends Component {
             console.log(this.state.day);
             console.log(this.state.month);
             console.log(this.state.year);
-            const response = await fetch('http://192.168.100.4:5050/historial/'+this.state.difficulty+'/'+this.state.id, {
+            const response = await fetch('http://0.0.0.0:5050/historial/'+this.state.difficulty+'/'+this.state.id, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
