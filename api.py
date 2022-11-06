@@ -62,24 +62,27 @@ class ScoreH(db.Model):
         self.player = player
 
 #Services and routes
-@app.route('/signin/', methods=['post'])
+@app.route('/signin', methods=['post'])
 def signin():
     name = request.json['name']
     password = request.json['password']
-    ply = Player(name, password)
-    db.session.add(ply)
-    db.session.commit()
+    found = Player.query.filter_by(name=name).first()
+    if found:
+        return jsonify({"Response": "-1"})
+    else:
+        ply = Player(name, password)
+        db.session.add(ply)
+        db.session.commit()
+        return jsonify({"Response": "1"})
 
-    return jsonify({"Response": "1"})
-
-@app.route('/login/', methods=['get'])
+@app.route('/login', methods=['post'])
 def login():
     name = request.json['name']
     password = request.json['password']
     found = Player.query.filter_by(name=name).first()
     if found:
         if found.validate_password(password):
-            return jsonify({"Response": "1"})
+            return jsonify({"Response": str(found.id)})
         else:
             return jsonify({"Response": "-1"})
     else:
@@ -99,8 +102,8 @@ def historial(difficulty, id):
         first_date = first_date + timedelta(days=dow)
         max = [0, 0, 0, 0, 0, 0, 0]
         d = 6
-        # print(first_date)
-        # print(first_date.strftime("%w"))
+        #print(first_date)
+        #print(first_date.strftime("%w"))
 
         if difficulty == "n":
             points = Score.score
@@ -133,6 +136,9 @@ def historial(difficulty, id):
         prev_week = db.session.query(func.max(points)).filter \
             (dateP.between(last_date, first_date), playerid == found.id).first()
 
+        #print(prev_week)
+        #print(max)
+
         if prev_week[0]:
             return jsonify({'week': max, 'prev_week': prev_week[0]})
         else:
@@ -158,7 +164,7 @@ def promedio(difficulty, id):
         if len(points) > 0:
             last = len(points) - 1
         else:
-            return jsonify({"last": 0, "last_ten": []})
+            return jsonify({"last": 0, "last_ten": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 
         if len(points) > 10:
             prom = last - 10
