@@ -47,7 +47,7 @@ export default class Login extends Component {
 
     Log_in = async () =>{
         try{
-            const response = await fetch('http://192.168.100.4:5050/login',{
+            const response = await fetch('http://0.0.0.0:5050/login',{
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -75,7 +75,7 @@ export default class Login extends Component {
 
     Sign_in = async () =>{
         try{
-            const response = await fetch('http://192.168.100.4:5050/signin',{
+            const response = await fetch('http://0.0.0.0:5050/signin',{
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
