@@ -15,7 +15,7 @@ The game has three difficulties:
 * Difícil (hard): Letters no longer have visual help to perform the sign.
 ## Check out your scores
 Install the app in your phone and run the api.py script to start the server.\
-You can create an user or login here to keep track of your scores and improvement on the game.
+You can create an user and login in the app to keep track of your scores and improvement on the game.
 ## Play online
 Use the scripts in the Network folder to play a pvp gamemode.\
 A random letter will be selected by the server, the first player to perform the letter's sign correctly will win.\
